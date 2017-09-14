@@ -1,25 +1,21 @@
 What is generalization?
 -----------------------
 
-\begin{center}
-\large“Generalization” is the replication of an association between a genetic variant and a trait, discovered in one population, to another population.
-\end{center}
-\begin{itemize}
-\item  Most genetic association studies were performed in populations of European Ancestry (EA)
-\item  These are often detected in very large GWAS (e.g. 100,000 individuals)
-\end{itemize}
+### “Generalization” is the replication of an association between a genetic variant and a trait, discovered in one population, to another population.
+
+-   Most genetic association studies were performed in populations of European Ancestry (EA)
+-   These are often detected in very large GWAS (e.g. 100,000 individuals)
+
 Why perform generalization analysis?
 ------------------------------------
 
-There are multiple reasons.
-\begin{itemize}
-\item To know, whether associations that were discovered in one populations exists in another. 
-  \begin{itemize}
-   \item This may not always be true...
-   \end{itemize}
-\item To gain power by limiting the number of variants tested for associations to those already previously reported. 
-\item Because we need to perform \textit{replication} analysis, but we do not have access to an independent study with the same type of population and/or the same trait. 
-\end{itemize}
+### There are multiple reasons.
+
+-   To know, whether associations that were discovered in one populations exists in another.
+    -   This may not always be true...
+-   To gain power by limiting the number of variants tested for associations to those already previously reported.
+-   Because we need to perform analysis, but we do not have access to an independent study with the same type of population and/or the same trait.
+
 Generalization analysis
 -----------------------
 
@@ -48,10 +44,7 @@ Generalization analysis
 -   The generalization framework also takes into account the direction of associations.
 -   If the estimated association is negative in one study, and positive in the other, the association will not generalize.
 
-\begin{figure}
-\includegraphics[scale =0.7]{generalization_table.pdf}
-\end{figure}
--   Here, the cells in gray represent generalized associations.
+![](https://github.com/tamartsi/association_analyses_class/blob/master/figures/generalization_table.pdf) - Here, the cells in gray represent generalized associations.
 
 Generalization analysis - platelet count example
 ------------------------------------------------
@@ -84,15 +77,6 @@ Generalization analysis - platelet count example
 #         subdir = "generalize")
 require(generalize)
 ```
-
-    ## Loading required package: generalize
-
-    ## 
-    ## Attaching package: 'generalize'
-
-    ## The following object is masked _by_ '.GlobalEnv':
-    ## 
-    ##     dat
 
 Generalization analysis - let's do it!
 --------------------------------------
@@ -252,20 +236,6 @@ Generalization analysis - let's do it!
 ``` r
 require(ggplot2,quietly = TRUE)
 require(gridExtra,quietly = TRUE)
-```
-
-    ## 
-    ## Attaching package: 'gridExtra'
-
-    ## The following object is masked from 'package:Biobase':
-    ## 
-    ##     combine
-
-    ## The following object is masked from 'package:BiocGenerics':
-    ## 
-    ##     combine
-
-``` r
 require(RColorBrewer,quietly = TRUE)
 figure.out <-  paste0(getwd(), 
                       "/Generalization_example.pdf")

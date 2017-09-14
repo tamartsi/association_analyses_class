@@ -44,7 +44,7 @@ Generalization analysis
 -   The generalization framework also takes into account the direction of associations.
 -   If the estimated association is negative in one study, and positive in the other, the association will not generalize.
 
-![](https://github.com/tamartsi/association_analyses_class/blob/master/figures/generalization_table.pdf) - Here, the cells in gray represent generalized associations.
+[](https://github.com/tamartsi/association_analyses_class/blob/master/figures/generalization_table.pdf) - Here, the cells in gray represent generalized associations.
 
 Generalization analysis - platelet count example
 ------------------------------------------------
