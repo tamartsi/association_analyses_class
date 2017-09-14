@@ -50,10 +50,7 @@ Generalization analysis - platelet count example
 ------------------------------------------------
 
 -   Suppose that we ran a GWAS of platelet count in the HCHS/SOL.
--   The results are displayed in the Manhattan plot:
-    \begin{figure}
-    \includegraphics[angle =270, scale = 0.45, trim = 120 70 0 0, clip]{PLT_manhattan.pdf}
-    \end{figure}
+-   The results are displayed in the Manhattan plot: ![this figure is from Schick, Ursula M., et al. "Genome-wide association study of platelet count identifies ancestry-specific loci in Hispanic/Latino Americans." The American Journal of Human Genetics 98.2 (2016): 229-242.](/figures/PLT_manhattan.png)
 
 Generalization analysis - platelet count example
 ------------------------------------------------
@@ -252,10 +249,7 @@ prepareGenResFigure(dat$rsID, dat$study1.beta,
 Generalization analysis - let's do it!
 --------------------------------------
 
--   Look look at our figure!
-    \begin{figure}
-    \includegraphics[scale = 0.4]{Generalization_example.pdf}
-    \end{figure}
+-   Look look at our figure! ![Resulting figure](/figures/Generalization_example.png)
 
 Generalization analysis - more considerations
 ---------------------------------------------
