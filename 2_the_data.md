@@ -20,23 +20,25 @@ Hispanics/Latinos and genetic ancestry
 
 -   Hispanics/Latinos are admixed, with three ancestral populations: European, Amerindian, and African.
 -   The proportion of genotypes due to each ancestry differ between people and groups.
+-   This is demonstrated in the following figure, taken from: Conomos, Matthew P., et al. "Genetic diversity and association studies in US Hispanic/Latino populations: applications in the Hispanic Community Health Study/Study of Latinos." The American Journal of Human Genetics 98.1 (2016): 165-184.
+    -   Many of the additional figures below are also taken from the supplementary material of the same paper.
 
-Figure taken from: Conomos, Matthew P., et al. "Genetic diversity and association studies in US Hispanic/Latino populations: applications in the Hispanic Community Health Study/Study of Latinos." The American Journal of Human Genetics 98.1 (2016): 165-184.
+![ancestry proportions](/figures/ancestry_proportions.png)
 
 Hispanics/Latinos and genetic ancestry
 --------------------------------------
 
-\begin{multicols}{2}
-The diversity of the HCHS/SOL participants and the population structure could also be gleaned from the Principal Components (PCs) figure:
-\columnbreak
+-   The diversity of the HCHS/SOL participants and the population structure could also be gleaned from the Principal Components (PCs) figure:
 
-\includegraphics[scale = 0.35]{pc_fig.pdf}
-\end{multicols}
+![PCs](/figures/pc_fig.png)
+
 Genetic Analysis Groups
 -----------------------
 
 -   HCHS/SOL individuals self-identified as Mexican, Central American, South American (Mainland), Cuban, Dominican, or Puerto Rican (Caribbean).
 -   The HCHS/SOL GAC later defined the Genetic Analysis Groups based on these, and high-dimensional presentation of the genetic data.
+
+![distance from center - mexicans](/figures/mexican_distance.png)
 
 -   The genetic analysis group is now a factor variable that is used in association analyses in various ways. (How? - later!)
 
@@ -75,9 +77,7 @@ The (simple) simulated dataset
 ------------------------------
 
 -   The study individuals have genotypes from both ancestries on each chromosomes.
-    \begin{figure}
-    \includegraphics[scale= 0.4]{recombination.png}
-    \end{figure}
+    ![simulated data visualization](\figures\recombination.png)
 
 The simulated data set
 ----------------------
@@ -134,35 +134,6 @@ After the package is installed, load it:
 ``` r
 library("GWASTools", quietly=TRUE)
 ```
-
-    ## 
-    ## Attaching package: 'BiocGenerics'
-
-    ## The following objects are masked from 'package:parallel':
-    ## 
-    ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    ##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-    ##     parLapplyLB, parRapply, parSapply, parSapplyLB
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     IQR, mad, xtabs
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     anyDuplicated, append, as.data.frame, cbind, colnames,
-    ##     do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    ##     grepl, intersect, is.unsorted, lapply, lengths, Map, mapply,
-    ##     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    ##     Position, rank, rbind, Reduce, rownames, sapply, setdiff,
-    ##     sort, table, tapply, union, unique, unsplit, which, which.max,
-    ##     which.min
-
-    ## Welcome to Bioconductor
-    ## 
-    ##     Vignettes contain introductory material; view with
-    ##     'browseVignettes()'. To cite Bioconductor, see
-    ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
 
 ...and it may be useful to open the manual
 
@@ -397,11 +368,6 @@ Using the GWASTools R package to look at our data
 ``` r
 ## close the GDS file: 
 require(gdsfmt)
-```
-
-    ## Loading required package: gdsfmt
-
-``` r
 showfile.gds(close = TRUE)
 ```
 
