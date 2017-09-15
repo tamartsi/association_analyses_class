@@ -83,7 +83,12 @@ So how are these correlation matrices used?
 Linear mixed models - variance components
 -----------------------------------------
 
-\\begin{itemize} - Variance components are used in two important applications. + Association testing; + Heritability estimation. - Both require estimates of the variance components. - They are estimated by fitting a . + A model that includes the trait, and all adjusting covariates, and the random effects matrices; but not individual genotypes.
+-   Variance components are used in two important applications.
+    -   Association testing;
+    -   Heritability estimation.
+-   Both require estimates of the variance components.
+-   They are estimated by fitting a .
+    -   A model that includes the trait, and all adjusting covariates, and the random effects matrices; but not individual genotypes.
 
 Linear mixed models - the null model
 ------------------------------------
@@ -215,24 +220,24 @@ nullmod <- fitNullMM(scanData = scanAnnot,
 nullmod$varComp
 ```
 
-    ##      V_HH V_kinship       V_E 
-    ## 125.81207  86.84574  47.53430
+    ##       V_HH  V_kinship        V_E 
+    ##  49.773211   9.176902 164.682650
 
 ``` r
 varCompCI(nullmod, prop = TRUE)
 ```
 
-    ##           Proportion    Lower 95  Upper 95
-    ## V_HH       0.4835353  0.04957174 0.9174989
-    ## V_kinship  0.3337755 -0.72562827 1.3931792
-    ## V_E        0.1826892 -0.93299124 1.2983697
+    ##           Proportion   Lower 95  Upper 95
+    ## V_HH      0.22256672 -0.2742835 0.7194169
+    ## V_kinship 0.04103559 -0.9556135 1.0376847
+    ## V_E       0.73639769 -0.3309738 1.8037691
 
 The linear mixed model and heritability
 ---------------------------------------
 
 -   The proportion of variance due to kinship/genetic relatedness is .
     -   AKA narrow-sense heritability.
-    -   The heritability of "trait" is estimated to be 33%, with 95% confidence interval (-73, 139)%.
+    -   The heritability of "trait" is estimated to be 4%, with 95% confidence interval (-96, 104)%.
     -   To test heritability we can use the confidence intervals - if they are calculated correctly(!), or the likelihood ratio test.
 -   The simulated data set has 500 people, which is very small.
 -   Therefore, variance components are not well estimated,
@@ -271,9 +276,9 @@ assoc <- assocTestMM(genoData = genoData,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.261 secs
+    ## Block 1 of 2 Completed - 1.298 secs
 
-    ## Block 2 of 2 Completed - 0.9561 secs
+    ## Block 2 of 2 Completed - 0.6147 secs
 
 The linear mixed model and association testing
 ----------------------------------------------
@@ -284,18 +289,18 @@ head(assoc)
 
     ##   snpID chr   n   MAF minor.allele        Est        SE  Wald.Stat
     ## 1     1   1 500 0.000            A         NA        NA         NA
-    ## 2     2   1 500 0.001            A -2.3574390 16.248231 0.02105081
-    ## 3     3   1 500 0.008            A -0.6907384  5.655461 0.01491733
+    ## 2     2   1 500 0.001            A 16.5313629 15.056120 1.20556657
+    ## 3     3   1 500 0.008            A  2.0362520  5.334783 0.14568994
     ## 4     4   1 500 0.000            A         NA        NA         NA
-    ## 5     5   1 500 0.209            B  1.4273077  1.211778 1.38736071
-    ## 6     6   1 500 0.174            B  0.7567469  1.304453 0.33654615
+    ## 5     5   1 500 0.209            B -0.1615227  1.139900 0.02007861
+    ## 6     6   1 500 0.174            B -0.1977731  1.219728 0.02629107
     ##   Wald.pval
     ## 1        NA
-    ## 2 0.8846406
-    ## 3 0.9027909
+    ## 2 0.2722119
+    ## 3 0.7026887
     ## 4        NA
-    ## 5 0.2388513
-    ## 6 0.5618297
+    ## 5 0.8873178
+    ## 6 0.8711915
 
 ``` r
 close(gds)
