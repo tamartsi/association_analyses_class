@@ -77,7 +77,7 @@ The (simple) simulated dataset
 ------------------------------
 
 -   The study individuals have genotypes from both ancestries on each chromosomes.
-    ![simulated data visualization](\figures\recombination.png)
+    ![simulated data visualization](/figures/recombination.png)
 
 The simulated data set
 ----------------------
