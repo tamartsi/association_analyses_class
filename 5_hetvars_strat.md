@@ -13,30 +13,22 @@ The HCHS/SOL population is quite heterogeneous
 
 Example 1: the prevalence of asthma in a subset of unrelated individuals, who live in different households.
 
-| Group | Participants | Current asthma |
-|---------------------------------------|
-| CentralAmerican | 773 | 29 (3.8%)     |
-| SouthAmerican | 499 | 22 (4.4%)       |
-| Mexican | 2688 | 119 (4.4%)           |
-| PuertoRican | 1298 | 339 (26.1%)      |
-| Cuban | 1234 | 136 (11%)              |
-| Dominican | 670 | 70 (10.4%)          |
-| All combined | 7162 | 715 (10%)       |
+Group | Participants | Current asthma
+-------------------------------------
+
+CentralAmerican | 773 | 29 (3.8%)
+SouthAmerican | 499 | 22 (4.4%) Mexican | 2688 | 119 (4.4%) PuertoRican | 1298 | 339 (26.1%) Cuban | 1234 | 136 (11%) Dominican | 670 | 70 (10.4%) All combined | 7162 | 715 (10%) -----------------------------------------------
 
 The HCHS/SOL population is quite heterogeneous
 ----------------------------------------------
 
 Example 2: mean and variance of height in a subset of unrelated individuals, who live in different households.
 
-| Group | Participants | mean height | variance |
-|-----------------------------------------------|
-| CentralAmerican | 773 |160 |73.7              |
-| SouthAmerican | 499 | 160 | 81.6              |
-| Mexican | 2688 | 161 | 86.2                   |
-| PuertoRican | 1298 | 163 |89.3                |
-| Cuban | 1234 |164 | 89.5                      |
-| Dominican | 670 |162 |78.9                    |
-| All combined | 7162 | 162 | 87.2              |
+Group | Participants | mean height | variance
+---------------------------------------------
+
+CentralAmerican | 773 |160 |73.7 SouthAmerican | 499 | 160 | 81.6 Mexican | 2688 | 161 | 86.2 PuertoRican | 1298 | 163 |89.3 Cuban | 1234 |164 | 89.5
+Dominican | 670 |162 |78.9 All combined | 7162 | 162 | 87.2 -------------------------------------------------------
 
 Dealing with heterogeneity (1) heterogeneous variances
 ------------------------------------------------------
@@ -193,9 +185,9 @@ assoc <- assocTestMM(genoData = genoData,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.589 secs
+    ## Block 1 of 2 Completed - 1.248 secs
 
-    ## Block 2 of 2 Completed - 0.6159 secs
+    ## Block 2 of 2 Completed - 0.9887 secs
 
 Association testing proceeds as usueal.
 ---------------------------------------
