@@ -39,25 +39,34 @@ Quantitative trait analysis
 -   Random effects model the correlation between individuals' trait values.
 -   Specifically, one can define a matrix to do that. E.g. a kinship matrix. Or a household matrix!
 
-\begin{eqnarray*}
-\text{cor}\left[(b_1, b_2, b_3, \ldots)\right] &=& \begin{array}{cc}
- & \begin{array}{cccc} p_1 & p_2& p_3 & \ldots \end{array} \\
-\begin{array}{c}
-p_1 \\
-p_2\\
-p_3\\
-\vdots \\
-\end{array} & 
-  \left(
-\begin{array}{cccc}
- 1 & 0 & 0.5 & \ldots \\
-0 & 1 & 0.5 & \ldots \\
-0.5 & 0.5 & 1 & \ldots \\
-\vdots & & &  \\
-\end{array}
-\right) \\
-\end{array}
-\end{eqnarray*}
+$$
+\\text{cor}\\left\[ \\left(
+\\begin{array}{c}
+b\_1\\\\
+b\_2\\\\ 
+b\_3\\\\
+\\vdots \\\\
+\\end{array} \\right)
+\\right\] 
+= \\begin{array}{cc}
+ & \\begin{array}{cccc} p\_1 & p\_2& p\_3 & \\ldots \\end{array} \\\\
+\\begin{array}{c}
+p\_1 \\\\
+p\_2\\\\
+p\_3\\\\
+\\vdots \\\\
+\\end{array} & 
+  \\left(
+\\begin{array}{cccc}
+ 1 & 0 & 0.5 & \\ldots \\\\
+0 & 1 & 0.5 & \\ldots \\\\
+0.5 & 0.5 & 1 & \\ldots \\\\
+\\vdots & & &  \\\\
+\\end{array}
+\\right) \\\\
+\\end{array}
+$$
+
 -   Here, the correlation between the random effects of persons *p*<sub>1</sub> and *p*<sub>2</sub> is 0, and that of *p*<sub>1</sub> and *p*<sub>3</sub> is 0.5. Etc.
 
 Linear mixed models
@@ -276,9 +285,9 @@ assoc <- assocTestMM(genoData = genoData,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.298 secs
+    ## Block 1 of 2 Completed - 1.307 secs
 
-    ## Block 2 of 2 Completed - 0.6147 secs
+    ## Block 2 of 2 Completed - 0.9606 secs
 
 The linear mixed model and association testing
 ----------------------------------------------
