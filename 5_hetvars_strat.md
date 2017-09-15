@@ -1,16 +1,15 @@
 The HCHS/SOL population is quite heterogeneous
 ----------------------------------------------
 
-\begin{enumerate}
-\item Due to admixture: 
-  \begin{itemize}
-  \item Hispanics are admixed with three ancestral populations - European, African, Amerindian.
-  \item The patterns/proportions of admixture differ between background groups; 
-  \item Which could be divided to Mainland: Mexican, Central American, South American, and Caribbean: Dominican, Cuban, and Puerto Rican. 
-  \end{itemize}
-\item Due to lifestyle and other environmental exposure differences.
-\item Both genetic and environmental differences translate to differences in phentypic variability, disease prevalence. 
-\end{enumerate}
+\\begin{enumerate} - Due to admixture:
+
+      +Hispanics are admixed with three ancestral populations - European, African, Amerindian.
+      +The patterns/proportions of admixture differ between background groups; 
+      +Which could be divided to Mainland: Mexican, Central American, South American, and Caribbean: Dominican, Cuban, and Puerto Rican. 
+
+-   Due to lifestyle and other environmental exposure differences.
+-   Both genetic and environmental differences translate to differences in phentypic variability, disease prevalence. \\end{enumerate}
+
 The HCHS/SOL population is quite heterogeneous
 ----------------------------------------------
 
@@ -57,43 +56,39 @@ Dealing with heterogeneity (1) heterogeneous variances
 Recall the linear mixed model for quantitative traits:
 
 *y*<sub>*i*</sub> = **x**<sub>*i*</sub><sup>*T*</sup>**β** + *g*<sub>*i*</sub>*α* + *b*<sub>*i*</sub> + *ϵ*<sub>*i*</sub>, *i* = 1, …, *n*,
-\begin{itemize}
-\item with $b_i$ a random error - or a random effect - in addition to the i.i.d. error $\epsilon_i$.  
-\end{itemize}
+
+-   with *b*<sub>*i*</sub> a random error - or a random effect - in addition to the i.i.d. error *ϵ*<sub>*i*</sub>.
+
 The usual assumption is that var(*ϵ*<sub>*i*</sub>)=*σ*<sub>*e*</sub><sup>2</sup> for all *i* = 1, …, *n*.
-\begin{itemize}
-\item If there are well-defined sub-groups, one can fit a model which assigns each group its own residual variance. 
-\begin{itemize}
-\item \textcolor{purple}{Heterogeneous variances.}
-\end{itemize}
-\end{itemize}
+
+    +If there are well-defined sub-groups, one can fit a model which assigns each group its own residual variance. 
+
+-   
+
 Dealing with heterogeneity (1) heterogeneous variances
 ------------------------------------------------------
 
 Suppose that each participant *i* is associated with a subgroup *k* = 1, …, *K*. Then:
 
 *y*<sub>*i**k*</sub> = **x**<sub>*i**k*</sub><sup>*T*</sup>**β** + *g*<sub>*i**k*</sub>*α* + *b*<sub>*i**k*</sub> + *ϵ*<sub>*i**k*</sub>, *i* = 1, …, *n*, *k* = 1, …, *K*
-\begin{itemize}
-\item with subscript $k$ added to denote that person $i$ is in group $k$. 
-\item With \textcolor{purple}{homogeneous} variances: $\mbox{Var}(\epsilon_{ik})= \sigma_e^2$ for all $i = 1, \ldots, n$. (The usual model)
-\item With \textcolor{purple}{heterogeneous} variances: $\mbox{Var}(\epsilon_{ik})= \sigma^2_{e,k}$.
-\end{itemize}
+
+-   with subscript *k* added to denote that person *i* is in group *k*.
+-   With variances: Var(*ϵ*<sub>*i**k*</sub>)=*σ*<sub>*e*</sub><sup>2</sup> for all *i* = 1, …, *n*. (The usual model)
+-   With variances: Var(*ϵ*<sub>*i**k*</sub>)=*σ*<sub>*e*, *k*</sub><sup>2</sup>.
+
 Dealing with heterogeneity (1) heterogeneous variances
 ------------------------------------------------------
 
 In the HCHS/SOL, we showed that using heterogeneous variances is useful for control of inflation, in GWASs of 22 traits.
-\begin{figure}
-\includegraphics[scale = 0.4]{inflation_homo_hetero.pdf}
-\end{figure}
-From: Conomos et al. 2016, Genetic Diversity and Association Studies in US Hispanic/Latino Populations: Applications in the Hispanic Community Health Study/Study of Latinos, AJHG.
+![inflation in homogenenous versus heterogeneous variance models](/figures/inflation_homo_hetero.png) From: Conomos et al. 2016, Genetic Diversity and Association Studies in US Hispanic/Latino Populations: Applications in the Hispanic Community Health Study/Study of Latinos, AJHG.
 
 Linear mixed models with heterogeneous variances
 ------------------------------------------------
 
 Let's try it!
-\begin{itemize}
-\item We first load our scanAnnotation object. 
-\end{itemize}
+
+-   We first load our scanAnnotation object.
+
 ``` r
 library(GWASTools)
 library(GENESIS)
@@ -150,9 +145,8 @@ nullmod <- fitNullMM(scanData = scanAnnot,
 Linear mixed models with heterogeneous variances
 ------------------------------------------------
 
-\begin{itemize}
-\item Let's look at the results:
-\end{itemize}
+-   Let's look at the results:
+
 ``` r
 names(nullmod)
 ```
@@ -175,9 +169,8 @@ nullmod$varComp
 Linear mixed models with heterogeneous variances
 ------------------------------------------------
 
-\begin{itemize}
-\item Let's look at the results:
-\end{itemize}
+-   Let's look at the results:
+
 ``` r
 nullmod$fixef
 ```
@@ -190,12 +183,10 @@ nullmod$fixef
     ## age          3.822844 0.03297316 13441.638824 0.000000e+00
     ## groupuw     -4.912214 1.62688357     9.116784 2.532748e-03
 
-\begin{itemize}
-\item Unfortunately, function varCompCI(nullmod, prop = TRUE) is not supported for heterogeneous variances. 
-\begin{itemize}
-\item It does not calculate heritability for each group separately. Maybe it should?
-\end{itemize}
-\end{itemize}
+-   Unfortunately, function varCompCI(nullmod, prop = TRUE) is not supported for heterogeneous variances.
+
+    +It does not calculate heritability for each group separately. Maybe it should?
+
 Association testing proceeds as usual.
 --------------------------------------
 
@@ -214,9 +205,9 @@ assoc <- assocTestMM(genoData = genoData,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.605 secs
+    ## Block 1 of 2 Completed - 1.253 secs
 
-    ## Block 2 of 2 Completed - 0.5873 secs
+    ## Block 2 of 2 Completed - 0.5963 secs
 
 Association testing proceeds as usueal.
 ---------------------------------------
@@ -247,48 +238,40 @@ close(gds)
 Exercises
 ---------
 
-\begin{enumerate}
-\item Compare the $p$-values and effect estimates using the plot() command from GWAS with and without heterogeneous variances. 
-    \begin{itemize}
-    \item You can compare -log($p$-value,10).
-    \end{itemize}
-\item Can you use heterogeneous variances in logistic regression?
-\end{enumerate}
+\\begin{enumerate} - Compare the *p*-values and effect estimates using the plot() command from GWAS with and without heterogeneous variances.
+
+        +You can compare -log($p$-value,10).
+
+-   Can you use heterogeneous variances in logistic regression? \\end{enumerate}
+
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Heterogeneous variance model accounts for differences in residual variances.
-\item While other effects remain common to all groups (e.g. fixed effects, genetic variances).
-\item Stratified analysis allows for a different model, with different parameters, in each stratum. 
-\item One can inspect results in each stratum, and combine results across strata in meta-analysis. 
-\end{itemize}
+-   Heterogeneous variance model accounts for differences in residual variances.
+-   While other effects remain common to all groups (e.g. fixed effects, genetic variances).
+-   Stratified analysis allows for a different model, with different parameters, in each stratum.
+-   One can inspect results in each stratum, and combine results across strata in meta-analysis.
+
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Combining results across strata in meta-analysis is not trivial, due to genetic relatedness and shared household (environmental correlation) among individuals in different groups. 
-\item Method to do it: MetaCor. Meta-analysis when correlations between strata exist, and are modeled.
-\begin{itemize}
-\item Mixed-models based approach. 
-\end{itemize}
-\end{itemize}
+-   Combining results across strata in meta-analysis is not trivial, due to genetic relatedness and shared household (environmental correlation) among individuals in different groups.
+-   Method to do it: MetaCor. Meta-analysis when correlations between strata exist, and are modeled.
+
+    +Mixed-models based approach.
+
 Sofer et al. (2016), \`\`Meta-Analysis of Genome-Wide Association Studies with Correlated Individuals: Application to the Hispanic Community Health Study/Study of Latinos (HCHS/SOL)", gen epi.
 
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-It may help with inflation control. Example: log(BMI) analysis.
-\begin{figure}
-\includegraphics[scale = 0.4]{compare_bmi_inflation.pdf}
-\end{figure}
+It may help with inflation control. Example: log(BMI) analysis. ![comparing BMI inflation](/figures/compare_bmi_inflation.png)
+
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-It may help with power. Example: significant variant detected in dental caries (tooth decays) analysis.
-\begin{figure}
-\includegraphics[scale = 0.4]{compare_caries_snp.pdf}
-\end{figure}
+It may help with power. Example: significant variant detected in dental caries (tooth decays) analysis. ![comparing analyses of caries SNP](/figures/compare_caries_snp.png)
+
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
@@ -304,8 +287,6 @@ Tell R we want to use it:
 ``` r
 require(MetaCor)
 ```
-
-    ## Loading required package: MetaCor
 
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
@@ -324,12 +305,11 @@ genoData <- GenotypeData(gds,
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Using the MetaCor package is slightly more complicated then using GENESIS.
-\item It takes as arguments actual genotype counts and covariates info. 
-\item So we need to extract them first. 
-\item We can use a function from the GENESIS package.
-\end{itemize}
+-   Using the MetaCor package is slightly more complicated then using GENESIS.
+-   It takes as arguments actual genotype counts and covariates info.
+-   So we need to extract them first.
+-   We can use a function from the GENESIS package.
+
 ``` r
 covariates <- c("EV1", "EV2", "sex", "age")
  dat <- GENESIS:::createDesignMatrix(
@@ -342,10 +322,9 @@ covariates <- c("EV1", "EV2", "sex", "age")
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item We got an object that has the outcome, and a design matrix. 
-\item Note that we do not use the "group" variable as a covariate, because we are going to use it for stratification!
-\end{itemize}
+-   We got an object that has the outcome, and a design matrix.
+-   Note that we do not use the "group" variable as a covariate, because we are going to use it for stratification!
+
 ``` r
 names(dat)
 ```
@@ -384,13 +363,11 @@ head(dat$W)
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Let's set the names of the outcome $Y$ to be the sample IDs. 
-\item The correlation matrix kin.mat are already in our workspace, but let's load a different household matrix. 
-\begin{itemize}
-\item And their column and row names are the sample IDs. 
-\end{itemize}
-\end{itemize}
+-   Let's set the names of the outcome *Y* to be the sample IDs.
+-   The correlation matrix kin.mat are already in our workspace, but let's load a different household matrix.
+
+    +And their column and row names are the sample IDs.
+
 ``` r
 W <- dat$W
 Y <- dat$Y
@@ -408,9 +385,8 @@ HH.mat[1:3,1:3]
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item To stratify by group, we now need to prepare a list with sample IDs for each group. 
-\end{itemize}
+-   To stratify by group, we now need to prepare a list with sample IDs for each group.
+
 ``` r
 covMatList <- list(HH = HH.mat, kinship = kin.mat)
 IDs.list.group <- list(
@@ -421,9 +397,8 @@ IDs.list.group <- list(
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Finally, let's read the genotype from file.
-\end{itemize}
+-   Finally, let's read the genotype from file.
+
 ``` r
 G <- getGenotype(genoData)
 dim(G)
@@ -445,10 +420,9 @@ G[3:7,5:7]
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Assign sample and SNP IDs to the rows and columns of G:
-\item And make the rows of G correspond to people by transposing... 
-\end{itemize}
+-   Assign sample and SNP IDs to the rows and columns of G:
+-   And make the rows of G correspond to people by transposing...
+
 ``` r
 colnames(G) <- getScanID(genoData)
 rownames(G) <- getSnpID(genoData)
@@ -469,9 +443,8 @@ G <- t(G)
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item Finally we can perform stratified analysis!
-\end{itemize}
+-   Finally we can perform stratified analysis!
+
 ``` r
 strat.model <- stratLMMTest(Y = Y, W = as.matrix(W), 
                       G = as.matrix(G[,c(1:100)]),
@@ -488,10 +461,9 @@ strat.model <- stratLMMTest(Y = Y, W = as.matrix(W),
 Dealing with heterogeneity (2) stratified analysis
 --------------------------------------------------
 
-\begin{itemize}
-\item I used only first 100 SNPs, because there are so many missing SNPs when considering all variants, too many people were removed and the algorithm did not converge. 
-\item Alternatively, I could have imputed allele counts to the mean.
-\end{itemize}
+-   I used only first 100 SNPs, because there are so many missing SNPs when considering all variants, too many people were removed and the algorithm did not converge.
+-   Alternatively, I could have imputed allele counts to the mean.
+
 ``` r
 close(gds)
 ```

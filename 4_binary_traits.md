@@ -5,50 +5,44 @@ Disease (binary) trait analysis
 -   The basic logistic regression model for a binary outcome:
     logit\[*p*(*D*<sub>*i*</sub> = 1)\] = **x**<sub>*i*</sub><sup>*T*</sup>**β** + *g*<sub>*i*</sub>*α*, *i* = 1, …, *n*.
      where here:
-    \begin{itemize}
-    \item $D_i$ is the disease status of person $i$
-    \item  $\mathbf{x}_i$ is a vector of adjusting covariates (age, sex, etc.), $\beta$ is a vector of their effects. 
-    \item $g_{i}$ is the dosage or count of the genotype allele of interest.
-    \item  $\mbox{logit}(u) = log[u/(1-u)]$, is a function that ensures that estimated disease probabilities - $u$ - will always be in the range $(0,1)$ (while $\text{logit}(u)$ could be anything). 
-    \end{itemize}
-    Note: there is no "residual". In linear regression, the residual induces the variability. Here, we directly model a probability, which induces a variability.
+
+-   *D*<sub>*i*</sub> is the disease status of person *i*
+-   **x**<sub>*i*</sub> is a vector of adjusting covariates (age, sex, etc.), *β* is a vector of their effects.
+-   *g*<sub>*i*</sub> is the dosage or count of the genotype allele of interest.
+-   logit(*u*)=*l**o**g*\[*u*/(1 − *u*)\], is a function that ensures that estimated disease probabilities - *u* - will always be in the range (0, 1) (while logit(*u*) could be anything).
+
+Note: there is no "residual". In linear regression, the residual induces the variability. Here, we directly model a probability, which induces a variability.
 
 Disease (binary) trait analysis
 -------------------------------
 
 *l**o**g**i**t*\[*p*(*D*<sub>*i*</sub> = 1)\] = **x**<sub>*i*</sub><sup>*T*</sup>**β** + *g*<sub>*i*</sub>*α*, *i* = 1, …, *n*.
-\begin{itemize}
-\item The basic assumption in this model is that observations are "independent and identically distributed" (i.i.d.). 
-\item This does not hold for the HCHS/SOL.
-  \begin{itemize}
-  \item  So we cannot use the "usual" logistic regression.  
-  \item We use mixed models (or GEEs), instead. 
-  \end{itemize}
-\end{itemize}
-Questions:
-\begin{enumerate}
-\item What will happen if we used logistic regression instead of a logistic mixed model?
-\item How can we use logistic regression correctly, assuming we really wanted to?
-\end{enumerate}
+
+-   The basic assumption in this model is that observations are "independent and identically distributed" (i.i.d.).
+-   This does not hold for the HCHS/SOL.
+
+    -   So we cannot use the "usual" logistic regression.
+    -   We use mixed models (or GEEs), instead.
+
+Questions: 1. What will happen if we used logistic regression instead of a logistic mixed model? 2. How can we use logistic regression correctly, assuming we really wanted to?
+
 Disease (binary) trait analysis
 -------------------------------
 
-\begin{itemize}
-\item The logistic mixed model states that the disease probabilities of people who are somehow close or similar to each other, are more similar to each other than the disease probabilities of people who are not close or similar. 
-\item One way to model this is using random effects.
-\item For example, if there was one source of such similarities between disease probabilities:
-\end{itemize}
+-   The logistic mixed model states that the disease probabilities of people who are somehow close or similar to each other, are more similar to each other than the disease probabilities of people who are not close or similar.
+-   One way to model this is using random effects.
+-   For example, if there was one source of such similarities between disease probabilities:
+
 *l**o**g**i**t*\[*p*(*D*<sub>*i*</sub> = 1)\] = **x**<sub>*i*</sub><sup>*T*</sup>**β** + *g*<sub>*i*</sub>*α* + *b*<sub>*i*</sub>, *i* = 1, …, *n*,
-\begin{itemize}
-\item with $b_i$ a random effect, increasing/decreasing the baseline odds of the disease. 
-\end{itemize}
+
+-   with *b*<sub>*i*</sub> a random effect, increasing/decreasing the baseline odds of the disease.
+
 Disease (binary) trait analysis
 -------------------------------
 
-\begin{itemize}
-\item Random effects reflect here  similarity in disease odds across individuals using a correlation structure.
-\item As in linear regression, we use matrices to model the correlations between random effects across individuals. 
-\end{itemize}
+-   Random effects reflect here similarity in disease odds across individuals using a correlation structure.
+-   As in linear regression, we use matrices to model the correlations between random effects across individuals.
+
 \begin{eqnarray*}
 \text{cor}\left[(b_1, b_2, b_3, \ldots)\right] &=& \begin{array}{cc}
  & \begin{array}{cccc} p_1 & p_2& p_3 & \ldots \end{array} \\
@@ -67,83 +61,72 @@ p_3\\
 \end{array}
 \right) \\
 \end{array}
-\end{eqnarray*}\begin{itemize}
-\item Here, the correlation between the random effects of $p_1$ and $p_2$ is 0, and that of $p_1$ and $p_3$ is 0.5. Etc.  
-\end{itemize}
+\end{eqnarray*}
+-   Here, the correlation between the random effects of *p*<sub>1</sub> and *p*<sub>2</sub> is 0, and that of *p*<sub>1</sub> and *p*<sub>3</sub> is 0.5. Etc.
+
 Logistic mixed models
 ---------------------
 
-\begin{itemize}
-\item Logistic mixed models are similar to logistic regression, with the addition of random effects.
-\item The interpretation is not as "clean" and simple as in linear regression. 
-  \begin{itemize}
-  \item In linear regression, we used random effects to explicitly model correlation between phenotypes across individuals. 
-  \item Here, we do NOT explicitly model the equivalent - correlation between disease probabilities. 
-  \end{itemize}
-\end{itemize}
+-   Logistic mixed models are similar to logistic regression, with the addition of random effects.
+-   The interpretation is not as "clean" and simple as in linear regression.
+
+    -   In linear regression, we used random effects to explicitly model correlation between phenotypes across individuals.
+    -   Here, we do NOT explicitly model the equivalent - correlation between disease probabilities.
+
 Logistic mixed models
 ---------------------
 
 So how are logistic mixed models practically different from linear mixed models?
-\begin{itemize}
-\item Variance components are still estimated (but no variance term corresponding to independent errors).
-\item There is no straight-forward interpretation of heritability based on variance components. 
-\item Computationally, logistic models, and logistic mixed models, take longer to fit (compared to their linear counterparts). 
-\item Logistic mixed models for more than a single correlation matrix are implemented in the software GMMAT and R package GENESIS (the same algorithm). 
-\end{itemize}
+
+-   Variance components are still estimated (but no variance term corresponding to independent errors).
+-   There is no straight-forward interpretation of heritability based on variance components.
+-   Computationally, logistic models, and logistic mixed models, take longer to fit (compared to their linear counterparts).
+-   Logistic mixed models for more than a single correlation matrix are implemented in the software GMMAT and R package GENESIS (the same algorithm).
+
 Logistic mixed models
 ---------------------
 
-\begin{itemize}
-\item The GMMAT algorithm uses an approximation, which essentially fits linear mixed models about 4 times, each time for a different "working trait", until both "working traits" and estimated model parameters converge (become about the same as in the previous iteration).  
-\item We still fit a null model, as in linear regression.
-  \begin{itemize}
-  \item It takes about four times longer.
-  \end{itemize}
-\item We use the null model and the "working traits" to test genotype-disease associations. 
-\end{itemize}
+-   The GMMAT algorithm uses an approximation, which essentially fits linear mixed models about 4 times, each time for a different "working trait", until both "working traits" and estimated model parameters converge (become about the same as in the previous iteration).
+-   We still fit a null model, as in linear regression.
+
+    -   It takes about four times longer.
+-   We use the null model and the "working traits" to test genotype-disease associations.
+
 Take-home message: the "null model" for binary traits takes 4 times longer to fit than that for quantitative traits. Afterwards computation time is the same.
 
 Logistic vs linear mixed models
 -------------------------------
 
-\begin{itemize}
-\item In the past, people used linear mixed models instead of logistic mixed models. 
-\begin{itemize}
-\item Because it saved a lot of computation time. 
-\end{itemize}
-\item Is it okay to use linear mixed models?
-\begin{itemize}
-\item Sometimes. But better not! 
-\item Basic assumption made by linear mixed models: \textcolor{orange}{residual variance is the same for all people.} 
-\item Basic assumption made by logistic model: \textcolor{orange}{if someone has a probability $p$ of disease, the variance of her outcome is $p(1-p)$}.
-\end{itemize}
-\end{itemize}
+-   In the past, people used linear mixed models instead of logistic mixed models.
+
+    -   Because it saved a lot of computation time.
+-   Is it okay to use linear mixed models?
+
+    -   Sometimes. But better not!
+    -   Basic assumption made by linear mixed models:
+    -   Basic assumption made by logistic model: .
+
 Logistic vs linear mixed models
 -------------------------------
 
-\begin{itemize}
-\item Chen et al. (2016, AJHG) showed in 
-\textcolor{purple}{``Control for population structure and relatedness for binary traits in genetic association studies via logistic mixed models"} that when 
-\begin{itemize}
-\item MAF differ between sub-populations in the study
-\item Disease prevalence differ between these sub-populations
-\end{itemize}
-\item LMM test statistics can be either too significant (inflated), or too conservative (deflated). 
-\end{itemize}
+-   Chen et al. (2016, AJHG) showed in that when
+
+    -   MAF differ between sub-populations in the study
+    -   Disease prevalence differ between these sub-populations
+-   LMM test statistics can be either too significant (inflated), or too conservative (deflated).
+
 Logistic vs linear mixed models
 -------------------------------
 
-\begin{figure}
-\includegraphics[scale = 0.3]{chen_qqplots.pdf} 
-\end{figure}
+![qqplot from GMMAT paper](/figures/chen_qqplots.png)
+
 Logistic mixed models - the null model
 --------------------------------------
 
 Let's try it!
-\begin{itemize}
-\item We first load our scanAnnotation object. 
-\end{itemize}
+
+-   We first load our scanAnnotation object.
+
 ``` r
 library(GWASTools)
 library(GENESIS)
@@ -163,9 +146,8 @@ scanAnnot
 Linear mixed models - the null model
 ------------------------------------
 
-\begin{itemize}
-\item Select outcome, covariates, and load correlation matrices.
-\end{itemize}
+-   Select outcome, covariates, and load correlation matrices.
+
 ``` r
 varLabels(scanAnnot)[1:4]
 ```
@@ -201,9 +183,8 @@ nullmod <- fitNullMM(scanData = scanAnnot,
 Linear mixed models - the null model
 ------------------------------------
 
-\begin{itemize}
-\item Let's look at the results:
-\end{itemize}
+-   Let's look at the results:
+
 ``` r
 names(nullmod)
 ```
@@ -226,9 +207,8 @@ nullmod$varComp
 Logistic mixed models - the null model
 --------------------------------------
 
-\begin{itemize}
-\item Let's look at the results:
-\end{itemize}
+-   Let's look at the results:
+
 ``` r
 nullmod$fixef
 ```
@@ -244,10 +224,9 @@ nullmod$fixef
 The logstic mixed model and association testing
 -----------------------------------------------
 
-\begin{itemize}
-\item After estimating variance components in the ``null model", they are assumed fixed. 
-\item We now use this null model object in association testing. 
-\end{itemize}
+-   After estimating variance components in the \`\`null model", they are assumed fixed.
+-   We now use this null model object in association testing.
+
 ``` r
 gds <- GdsGenotypeReader(file.path(dir, 
                            "SISG_snp_dosages.gds"))
@@ -273,13 +252,11 @@ genoData <- GenotypeData(gds,
 The logistic mixed model and association testing
 ------------------------------------------------
 
-\begin{itemize}
-\item We cannot use a Wald test for logistic mixed models 
-  \begin{itemize}
-  \item Wald test requires estimating genotype effects. In logistic regression, this requires re-estimation of variance components, impossible to do efficiently. 
-  \end{itemize}
-\item Score tests are "under the null", so they are realistic for GWAS based on logistic mixed models. 
-\end{itemize}
+-   We cannot use a Wald test for logistic mixed models
+
+    -   Wald test requires estimating genotype effects. In logistic regression, this requires re-estimation of variance components, impossible to do efficiently.
+-   Score tests are "under the null", so they are realistic for GWAS based on logistic mixed models.
+
 ``` r
 assoc <- assocTestMM(genoData = genoData,
                      nullMMobj = nullmod,
@@ -290,9 +267,9 @@ assoc <- assocTestMM(genoData = genoData,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.513 secs
+    ## Block 1 of 2 Completed - 1.687 secs
 
-    ## Block 2 of 2 Completed - 0.5889 secs
+    ## Block 2 of 2 Completed - 0.589 secs
 
 The logistic mixed model and association testing
 ------------------------------------------------
@@ -323,32 +300,27 @@ close(gds)
 Exercises
 ---------
 
-\begin{enumerate}
-\item Use the results from the GWAS we ran on slide 19. Use the function qqPlot() from the GWASTools package to make a q-q plot figure of the $p$-values from the Score test.
-\item Use the following approximation between the Score and Wald test to obtain log(ORs) and ORs for the SNP effects:
-  \begin{itemize}
-  \item $\beta = \frac{\mbox{score}}{\mbox{var}(\mbox{score})}$
-  \item $\mbox{SE}(\beta) = 1/\sqrt{\mbox{var}(\mbox{score})}$
-  \item $\mbox{OR} = exp(\beta)$. 
-  \end{itemize}
-  \begin{itemize}
-  \item Which SNP has the highest odds ratio (OR)?
-  \end{itemize}
-\item Use the function manhattanPlot() from the GWASTools package to generate a Manhattan plots for the Score test $p$-values. Did any of the SNPs achieve genome-wide significance? ($p$-value$=5\times 10{-8}$) array-wide significance?
-\end{enumerate}
+1.  Use the results from the GWAS we ran on slide 19. Use the function qqPlot() from the GWASTools package to make a q-q plot figure of the *p*-values from the Score test.
+2.  Use the following approximation between the Score and Wald test to obtain log(ORs) and ORs for the SNP effects:
+
+    -   $\\beta = \\frac{\\mbox{score}}{\\mbox{var}(\\mbox{score})}$
+    -   $\\mbox{SE}(\\beta) = 1/\\sqrt{\\mbox{var}(\\mbox{score})}$
+    -   OR = *e**x**p*(*β*).
+
+    -   Which SNP has the highest odds ratio (OR)?
+
+3.  Use the function manhattanPlot() from the GWASTools package to generate a Manhattan plots for the Score test *p*-values. Did any of the SNPs achieve genome-wide significance? (*p*-value=5 × 10−8) array-wide significance?
+
 Exercises
 ---------
 
-\begin{enumerate}\setcounter{enumi}{3}
-\item Which variant is most associated with "disease" among all variants?
-\item Run linear mixed model GWAS instead of logistic, treating "disease" as a quantitative trait.
-\begin{itemize}
-\item ...by first fitting a new null model using fitNullMM()
-\item Compare the $p$-values obtained by the two methods. You can use a scatter plot or a q-q plot.
-\item Do the two GWAS have the same top SNPs?
-\end{itemize}
-\item Use the parameter scan.include of function fitNullMM to fit perform association testing only in people from the UNC group.
-\begin{itemize}
-\item Does the this GWAS have the same top SNP as the GWAS that was run on all participants?
-\end{itemize}
-\end{enumerate}
+1.  Which variant is most associated with "disease" among all variants?
+2.  Run linear mixed model GWAS instead of logistic, treating "disease" as a quantitative trait.
+
+    -   ...by first fitting a new null model using fitNullMM()
+    -   Compare the *p*-values obtained by the two methods. You can use a scatter plot or a q-q plot.
+    -   Do the two GWAS have the same top SNPs?
+
+3.  Use the parameter scan.include of function fitNullMM to fit perform association testing only in people from the UNC group.
+
+    -   Does the this GWAS have the same top SNP as the GWAS that was run on all participants?
