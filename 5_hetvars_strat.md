@@ -1,55 +1,43 @@
 The HCHS/SOL population is quite heterogeneous
 ----------------------------------------------
 
-\\begin{enumerate} - Due to admixture:
+1.  Due to admixture:
 
-      +Hispanics are admixed with three ancestral populations - European, African, Amerindian.
-      +The patterns/proportions of admixture differ between background groups; 
-      +Which could be divided to Mainland: Mexican, Central American, South American, and Caribbean: Dominican, Cuban, and Puerto Rican. 
+    +Hispanics are admixed with three ancestral populations - European, African, Amerindian. +The patterns/proportions of admixture differ between background groups; +Which could be divided to Mainland: Mexican, Central American, South American, and Caribbean: Dominican, Cuban, and Puerto Rican.
 
--   Due to lifestyle and other environmental exposure differences.
--   Both genetic and environmental differences translate to differences in phentypic variability, disease prevalence. \\end{enumerate}
+2.  Due to lifestyle and other environmental exposure differences.
+3.  Both genetic and environmental differences translate to differences in phentypic variability, disease prevalence.
 
 The HCHS/SOL population is quite heterogeneous
 ----------------------------------------------
 
 Example 1: the prevalence of asthma in a subset of unrelated individuals, who live in different households.
-\begin{table}[ht]
-\centering
-\begin{tabular}{l rr }
-  \hline
-  Group & Participants & Current asthma\\
-  \hline
-  CentralAmerican & 773 & 29 (3.8\%) \\ 
-  SouthAmerican & 499 & 22 (4.4\%) \\ 
-  Mexican & 2688 & 119 (4.4\%) \\ 
-  PuertoRican & 1298 & 339 (26.1\%) \\ 
-  Cuban & 1234 & 136 (11\%) \\ 
-  Dominican & 670 & 70 (10.4\%) \\ 
-  All combined & 7162 & 715 (10\%)\\
-  \hline
-\end{tabular}
-\end{table}
+
+| Group | Participants | Current asthma |
+|---------------------------------------|
+| CentralAmerican | 773 | 29 (3.8%)     |
+| SouthAmerican | 499 | 22 (4.4%)       |
+| Mexican | 2688 | 119 (4.4%)           |
+| PuertoRican | 1298 | 339 (26.1%)      |
+| Cuban | 1234 | 136 (11%)              |
+| Dominican | 670 | 70 (10.4%)          |
+| All combined | 7162 | 715 (10%)       |
+
 The HCHS/SOL population is quite heterogeneous
 ----------------------------------------------
 
 Example 2: mean and variance of height in a subset of unrelated individuals, who live in different households.
-\begin{table}[ht]
-\centering
-\begin{tabular}{l rr r}
-  \hline
-  Group & Participants & mean height & variance\\
-  \hline
-  CentralAmerican & 773 &160 &73.7 \\ 
-  SouthAmerican & 499 & 160& 81.6 \\ 
-  Mexican & 2688 &  161& 86.2\\ 
-  PuertoRican & 1298 & 163 &89.3 \\ 
-  Cuban & 1234 &164 & 89.5  \\ 
-  Dominican & 670 &162 &78.9 \\ 
-  All combined & 7162 & 162 & 87.2 \\
-  \hline
-\end{tabular}
-\end{table}
+
+| Group | Participants | mean height | variance |
+|-----------------------------------------------|
+| CentralAmerican | 773 |160 |73.7              |
+| SouthAmerican | 499 | 160 | 81.6              |
+| Mexican | 2688 | 161 | 86.2                   |
+| PuertoRican | 1298 | 163 |89.3                |
+| Cuban | 1234 |164 | 89.5                      |
+| Dominican | 670 |162 |78.9                    |
+| All combined | 7162 | 162 | 87.2              |
+
 Dealing with heterogeneity (1) heterogeneous variances
 ------------------------------------------------------
 
@@ -205,9 +193,9 @@ assoc <- assocTestMM(genoData = genoData,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.253 secs
+    ## Block 1 of 2 Completed - 1.589 secs
 
-    ## Block 2 of 2 Completed - 0.5963 secs
+    ## Block 2 of 2 Completed - 0.6159 secs
 
 Association testing proceeds as usueal.
 ---------------------------------------
