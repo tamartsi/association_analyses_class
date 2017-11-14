@@ -1,36 +1,25 @@
 What is admixture mapping?
 --------------------------
 
-\begin{itemize}
-\item Admixture mapping is a type of association analysis that can be performed only in admixed populations. 
-\item In the history of mankind, sub-populations were formed, that have distinct genomic features. 
-\begin{itemize}
-\item Different frequencies of genetic variants, or population-specific genetic variants. 
-\end{itemize}
-\item Hispanics/Latinos are admixed. 
-\begin{itemize}
-\item A Hispanic/Latino individual likely have ancestors from three ancestral populations: European, African, Amerindian. 
-\end{itemize}
-\item Since chromosomes are inherited from parents in a process of recombination, for each person, segments of the chromosome were inherited from a specific ancestry (and ancestor). 
-\end{itemize}
+-   Admixture mapping is a type of association analysis that can be performed only in admixed populations.
+-   In the history of mankind, sub-populations were formed, that have distinct genomic features.
+    -   Different frequencies of genetic variants, or population-specific genetic variants.
+-   Hispanics/Latinos are admixed.
+    -   A Hispanic/Latino individual likely have ancestors from three ancestral populations: European, African, Amerindian.
+-   Since chromosomes are inherited from parents in a process of recombination, for each person, segments of the chromosome were inherited from a specific ancestry (and ancestor).
+
 What is admixture mapping?
 --------------------------
 
-\begin{figure}
-\includegraphics{recombination.png}
-\end{figure}
+![recombination figure](/figures/recombination.png)
+
 What is admixture mapping?
 --------------------------
 
-\begin{itemize}
-\item There are softwares that can delineate intervals along the chromosomes in a data set, and for each person, ``say" which ancestry this interval was inherited from. 
-\begin{itemize}
-\item Software name: RFMix
-\item It uses a ``reference panel": genetic sequences from people in relevant ancestral populations. 
-\item Underlying local ancestry intervals (LAIs) are likely not exactly the same for all people, but they are defined the same way by the software. 
-\end{itemize}
-\item Local ancestry inference was performed in the HCHS/SOL by Browning et al. (2016, G3), and the results are available. 
-\end{itemize}
+-   There are softwares that can delineate intervals along the chromosomes in a data set, and for each person, `say" which ancestry this interval was inherited from.  + Software name: RFMix + It uses a`reference panel": genetic sequences from people in relevant ancestral populations.
+    -   Underlying local ancestry intervals (LAIs) are likely not exactly the same for all people, but they are defined the same way by the software.
+-   Local ancestry inference was performed in the HCHS/SOL by Browning et al. (2016, G3), and the results are available.
+
 Looking at local ancestry files
 -------------------------------
 
@@ -42,6 +31,44 @@ Looking at local ancestry files
 \end{itemize}
 ``` r
 library("GWASTools")
+```
+
+    ## Loading required package: Biobase
+
+    ## Loading required package: BiocGenerics
+
+    ## Loading required package: parallel
+
+    ## 
+    ## Attaching package: 'BiocGenerics'
+
+    ## The following objects are masked from 'package:parallel':
+    ## 
+    ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    ##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+    ##     parLapplyLB, parRapply, parSapply, parSapplyLB
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     IQR, mad, xtabs
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     anyDuplicated, append, as.data.frame, cbind, colnames,
+    ##     do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    ##     grepl, intersect, is.unsorted, lapply, lengths, Map, mapply,
+    ##     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    ##     Position, rank, rbind, Reduce, rownames, sapply, setdiff,
+    ##     sort, table, tapply, union, unique, unsplit, which, which.max,
+    ##     which.min
+
+    ## Welcome to Bioconductor
+    ## 
+    ##     Vignettes contain introductory material; view with
+    ##     'browseVignettes()'. To cite Bioconductor, see
+    ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+``` r
 dir <- paste0("/home/postdoc/tsofer/SISG/", 
     "Preparing_simulated_data_2")
 scanAnnot <- getobj(file.path(dir,
@@ -75,12 +102,16 @@ head(pData(admixAnnot))
 Looking at local ancestry files
 -------------------------------
 
-\begin{itemize}
-\item We need to use different functions (from before) to read the data
-\item Because now we have genotype dosages/count per ancestry!
-\end{itemize}
+-   We need to use different functions (from before) to read the data
+-   Because now we have genotype dosages/count per ancestry!
+
 ``` r
 require(gdsfmt)
+```
+
+    ## Loading required package: gdsfmt
+
+``` r
 gds <- openfn.gds(file.path(dir, 
                   "SISG_local_ancestry_2.gds"))
 gds
@@ -240,9 +271,8 @@ Admixture mapping power
 Admixture mapping power
 -----------------------
 
-\begin{figure}
-\includegraphics{{20170621_admixmap_power_effect_0.06_a1freq_0.2}.pdf}
-\end{figure}
+![power figure](/figures/20170621_admixmap_power_effect_0.06_a1freq_0.2.png)
+
 Admixture mapping power
 -----------------------
 
@@ -311,7 +341,7 @@ assoc.admix <- admixMapMM(genoDataList,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 1 Completed - 0.05388 secs
+    ## Block 1 of 1 Completed - 0.08559 secs
 
 Admixture mapping - let'd do it!
 --------------------------------
@@ -355,9 +385,9 @@ assoc <- assocTestMM(genoData  , nullMMobj = nullmod)
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 1.863 secs
+    ## Block 1 of 2 Completed - 2.063 secs
 
-    ## Block 2 of 2 Completed - 0.5814 secs
+    ## Block 2 of 2 Completed - 0.9216 secs
 
 Admixture mapping - let'd do it!
 --------------------------------
@@ -382,9 +412,8 @@ Example from our work: admixture mapping of mean arterial pressure (MAP)
 -   We performed admixture mapping of blood pressure traits (under review).
 -   Analysis of MAP. Here is the Manhattan plot from the MAP analysis, testing counts of LAI from Amerindian ancestry (baseline is either European or African).
 
-\begin{figure}
-\includegraphics[trim = 0 0 0 3.4cm , clip]{map_amr.png}
-\end{figure}
+![amer association figure](/figures/map_amr.png)
+
 Example from our work: admixture mapping of mean arterial pressure (MAP)
 ------------------------------------------------------------------------
 
@@ -392,9 +421,8 @@ Example from our work: admixture mapping of mean arterial pressure (MAP)
 -   With the usual association analysis results (from GWAS that tested SNP allele dosages).
 -   Question: why do we use symbols when testing SNPs, lines when testing LAIs?
 
-\begin{figure}
-\includegraphics[height = 5cm, width = 5cm]{map_amr_with_assoc.png}
-\end{figure}
+![amer association figure with assoc](/figures/map_amr_with_assoc.png)
+
 Example from our work: admixture mapping of mean arterial pressure (MAP)
 ------------------------------------------------------------------------
 
@@ -406,20 +434,13 @@ Recall: admixture mapping associations are detected when there is a Also, when t
 Example from our work: admixture mapping of mean arterial pressure (MAP)
 ------------------------------------------------------------------------
 
-Candidate variants explaining the admixture mapping are likely:
-\begin{itemize}
-\item Somewhat significant in usual association testing.
-\item  Have different frequencies between ancestry.
-    \begin{itemize}
-    \item Or different effect sizes. 
-    \end{itemize}
-\end{itemize}
+Candidate variants explaining the admixture mapping are likely: - Somewhat significant in usual association testing. - Have different frequencies between ancestry. + Or different effect sizes.
+
 But we don't have ancestry-specific frequencies, nor effect sizes!
 
-\begin{itemize}
-\item Proxy: different genetic analysis groups have different ancestry proportions. 
-\item difference in ancestry-specific frequencies, likely lead to differences in allele frequencies between genetic analysis groups!
-\end{itemize}
+-   Proxy: different genetic analysis groups have different ancestry proportions.
+-   difference in ancestry-specific frequencies, likely lead to differences in allele frequencies between genetic analysis groups!
+
 Example from our work: admixture mapping of mean arterial pressure (MAP)
 ------------------------------------------------------------------------
 
@@ -428,39 +449,34 @@ Example from our work: admixture mapping of mean arterial pressure (MAP)
     -   Had difference in allele frequencies between the Mexican (high Amerindian ancestry proportion) and Cuban (low) genetic analysis group.
 -   And LD pruned them, to get four SNPs.
 
-\begin{figure}
-\includegraphics{map_snps.png}
-\end{figure}
+![MAP SNPs](/figures/map_snps.png)
+
 Example from our work: admixture mapping of mean arterial pressure (MAP)
 ------------------------------------------------------------------------
 
 -   Next: check whether these SNPs drive the admixture mapping association.
 -   Perform conditional analysis - the same linear mixed model, with these SNPs as covariates.
 
-\begin{figure}
-\includegraphics[height = 6cm, width = 6cm]{map_amr_cond.png}
-\end{figure}
+![MAP cond snps](/figures/map_amr_cond.png)
+
 Example from our work: admixture mapping of mean arterial pressure (MAP)
 ------------------------------------------------------------------------
 
 -   Finally, we can also use the package ASAFE to calculate ancestry-specific allele frequencies of the four SNPs.
 
-\begin{figure}
-\includegraphics[trim = 0 0 0 2cm, clip, width = 4cm, height = 5cm]{map_amr_asafe.png}
-\end{figure}
+![MAP snps asafe](/figures/map_amr_asafe.png)
+
 Exercises
 ---------
 
-\begin{enumerate}
-\item Which is the LAI with the most significant p-value in the admixture mapping? 
-\begin{itemize}
-    \item How many genotyped/imputed variants are in this LAI?
-    \item What is the most significant SNP in this LAI?
-    \item Can you use the formula $\beta(f_1 - f_2)$ to guestimate an effect size for the potential causal SNP in the LAI? if yes, what is it? if not, why not?
-    \end{itemize}
-\item Find the genotype with the largest MAF difference between the UW and UNC groups.
-\item Use this genotype in simulating a new trait with the code in the next slide, and run a new admixture mapping analysis. 
-\end{enumerate}
+1.  Which is the LAI with the most significant p-value in the admixture mapping?
+    -   How many genotyped/imputed variants are in this LAI?
+    -   What is the most significant SNP in this LAI?
+    -   Can you use the formula *β*(*f*<sub>1</sub> − *f*<sub>2</sub>) to guestimate an effect size for the potential causal SNP in the LAI? if yes, what is it? if not, why not?
+
+2.  Find the genotype with the largest MAF difference between the UW and UNC groups.
+3.  Use this genotype in simulating a new trait with the code in the next slide, and run a new admixture mapping analysis.
+
 Code for simulations
 --------------------
 
@@ -514,6 +530,11 @@ Code for simulations
 
 ``` r
 require(mvtnorm)
+```
+
+    ## Loading required package: mvtnorm
+
+``` r
 n <- nrow(kin.mat)
 new.trait <- 
   nullmod$model.matrix %*% matrix(c(4, 5, -2, 1, 4,2)) + 
