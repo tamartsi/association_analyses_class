@@ -16,7 +16,9 @@ What is admixture mapping?
 What is admixture mapping?
 --------------------------
 
--   There are softwares that can delineate intervals along the chromosomes in a data set, and for each person, `say" which ancestry this interval was inherited from.  + Software name: RFMix + It uses a`reference panel": genetic sequences from people in relevant ancestral populations.
+-   There are softwares that can delineate intervals along the chromosomes in a data set, and for each person, say (via inference) which ancestry this interval was inherited from.
+    -   Software name: RFMix
+    -   It uses a reference panel: genetic sequences from people in relevant ancestral populations.
     -   Underlying local ancestry intervals (LAIs) are likely not exactly the same for all people, but they are defined the same way by the software.
 -   Local ancestry inference was performed in the HCHS/SOL by Browning et al. (2016, G3), and the results are available.
 
@@ -31,44 +33,6 @@ Looking at local ancestry files
 \end{itemize}
 ``` r
 library("GWASTools")
-```
-
-    ## Loading required package: Biobase
-
-    ## Loading required package: BiocGenerics
-
-    ## Loading required package: parallel
-
-    ## 
-    ## Attaching package: 'BiocGenerics'
-
-    ## The following objects are masked from 'package:parallel':
-    ## 
-    ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    ##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-    ##     parLapplyLB, parRapply, parSapply, parSapplyLB
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     IQR, mad, xtabs
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     anyDuplicated, append, as.data.frame, cbind, colnames,
-    ##     do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    ##     grepl, intersect, is.unsorted, lapply, lengths, Map, mapply,
-    ##     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    ##     Position, rank, rbind, Reduce, rownames, sapply, setdiff,
-    ##     sort, table, tapply, union, unique, unsplit, which, which.max,
-    ##     which.min
-
-    ## Welcome to Bioconductor
-    ## 
-    ##     Vignettes contain introductory material; view with
-    ##     'browseVignettes()'. To cite Bioconductor, see
-    ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
-
-``` r
 dir <- paste0("/home/postdoc/tsofer/SISG/", 
     "Preparing_simulated_data_2")
 scanAnnot <- getobj(file.path(dir,
@@ -107,11 +71,6 @@ Looking at local ancestry files
 
 ``` r
 require(gdsfmt)
-```
-
-    ## Loading required package: gdsfmt
-
-``` r
 gds <- openfn.gds(file.path(dir, 
                   "SISG_local_ancestry_2.gds"))
 gds
@@ -341,7 +300,7 @@ assoc.admix <- admixMapMM(genoDataList,
 
     ## Beginning Calculations...
 
-    ## Block 1 of 1 Completed - 0.08559 secs
+    ## Block 1 of 1 Completed - 0.05022 secs
 
 Admixture mapping - let'd do it!
 --------------------------------
@@ -385,9 +344,9 @@ assoc <- assocTestMM(genoData  , nullMMobj = nullmod)
 
     ## Beginning Calculations...
 
-    ## Block 1 of 2 Completed - 2.063 secs
+    ## Block 1 of 2 Completed - 1.928 secs
 
-    ## Block 2 of 2 Completed - 0.9216 secs
+    ## Block 2 of 2 Completed - 0.5817 secs
 
 Admixture mapping - let'd do it!
 --------------------------------
@@ -530,11 +489,6 @@ Code for simulations
 
 ``` r
 require(mvtnorm)
-```
-
-    ## Loading required package: mvtnorm
-
-``` r
 n <- nrow(kin.mat)
 new.trait <- 
   nullmod$model.matrix %*% matrix(c(4, 5, -2, 1, 4,2)) + 
